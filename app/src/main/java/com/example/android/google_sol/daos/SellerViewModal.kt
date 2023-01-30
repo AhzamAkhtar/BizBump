@@ -13,5 +13,11 @@ class SellerViewModal  : ViewModel(){
         _sellerData.value = data
     }
 
+    private val _sellerDisplayForBottomNavigation = MutableLiveData<SellerDto>()
+    val sellerDisplayForBottomNavigation : MutableLiveData<SellerDto>
+    get() = _sellerDisplayForBottomNavigation
 
+    fun setSellerDisplayForBottomNavigation(data : SellerDto){
+        _sellerDisplayForBottomNavigation.value = data
+    }
 }

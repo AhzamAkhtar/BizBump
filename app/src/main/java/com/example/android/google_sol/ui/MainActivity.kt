@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import com.example.android.google_sol.DataClass.SellerDto
@@ -23,6 +25,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.maps.android.ktx.markerClickEvents
 
 
 class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
@@ -43,6 +46,8 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
         mapFragment.getMapAsync(this)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        fetchDataFromFirebase()
     }
 
     override fun onMapReady(GoogleMap: GoogleMap) {
@@ -56,7 +61,7 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
 
         googleMap.setOnMarkerClickListener(this)
         setUpMap()
-        fetchDataFromFirebase()
+
     }
 
     private fun setUpMap(){
@@ -93,14 +98,19 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
         //googleMap.addMarker(markerOptions.)
     }
 
-    private fun showBottomSheet(){
+    private fun showBottomSheet(headingTextInput : String , subTextInput : String){
         val dialog = BottomSheetDialog(this)
         val view =  layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
         dialog.setContentView(view)
         val orderButton = view.findViewById<Button>(R.id.btnToOrderNow)
+        val headingText = view.findViewById<TextView>(R.id.headText)
+        val subText = view.findViewById<TextView>(R.id.subText)
+        headingText.text = headingTextInput
+        subText.text = subTextInput
         orderButton.setOnClickListener{
             dialog.dismiss()
         }
+
         dialog.show()
     }
 
@@ -122,26 +132,37 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
                 }
             }
             .addOnFailureListener{exception ->
-                Log.d("Eror","Error getting Document",exception)
+                Log.d("Error","Error getting Document",exception)
             }
     }
 
     private fun setData(){
         viewModel.sellerData.observe(this){
             val modal = it as SellerDto
-            Log.d("Name",modal.Name)
+            //Log.d("Name",modal.Name)
             val latitude = modal.Lat.toDouble()
             val longitude = modal.Lng.toDouble()
             val directions = LatLng(latitude,longitude)
-            googleMap.addMarker(MarkerOptions().position(directions).title("Testing"))
+            viewModel.setSellerDisplayForBottomNavigation(
+                SellerDto(
+                    modal.Name,
+                    modal.Type,
+                    modal.Lat,
+                    modal.Lng
+                )
+            )
+            googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name+  modal.Type))
+            googleMap.setOnMarkerClickListener { marker ->
+                showBottomSheet(modal.Name,modal.Type)
+                Toast.makeText(this,"fff",Toast.LENGTH_SHORT).show()
+                false
+            }
+
         }
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
-        showBottomSheet()
-        return true
+        return false
     }
-
-
 
 }
