@@ -20,9 +20,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.maps.android.ktx.markerClickEvents
@@ -151,7 +149,11 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
                     modal.Lng
                 )
             )
-            googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name+  modal.Type))
+            googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name+  modal.Type)
+//                .icon(
+//                BitmapDescriptorFactory.fromResource(R.drawable.location)
+//            )
+            )
             googleMap.setOnMarkerClickListener { marker ->
                 showBottomSheet(modal.Name,modal.Type)
                 Toast.makeText(this,"fff",Toast.LENGTH_SHORT).show()
