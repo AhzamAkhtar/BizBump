@@ -4,6 +4,8 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -14,6 +16,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
@@ -79,7 +82,22 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
         //googleMap.addMarker(markerOptions.)
     }
 
-    override fun onMarkerClick(p0: Marker): Boolean = false
+    private fun showBottomSheet(){
+        val dialog = BottomSheetDialog(this)
+        val view =  layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
+        dialog.setContentView(view)
+        val orderButton = view.findViewById<Button>(R.id.btnToOrderNow)
+        orderButton.setOnClickListener{
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
 
+
+
+    override fun onMarkerClick(p0: Marker): Boolean {
+        showBottomSheet()
+        return true
+    }
 
 }
