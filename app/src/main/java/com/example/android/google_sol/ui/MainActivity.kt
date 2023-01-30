@@ -1,12 +1,17 @@
-package com.example.android.google_sol.UI
+package com.example.android.google_sol.ui
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import com.example.android.google_sol.DataClass.SellerDto
 import com.example.android.google_sol.R
+import com.example.android.google_sol.daos.SellerViewModal
+import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,11 +22,15 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
     lateinit var googleMap : GoogleMap
     private lateinit var lastLocation : Location
+    private val db = FirebaseFirestore.getInstance()
+    private val binding by lazy {ActivityMainBinding.inflate(layoutInflater)}
+    private val viewModel : SellerViewModal by viewModels()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     companion object {
          private const val LOCATION_REQUEST_CODE = 1
@@ -40,13 +49,14 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
         googleMap = GoogleMap
 
         val location1 = LatLng(28.551652534321633, 77.30066167895848)
-        googleMap.addMarker(MarkerOptions().position(location1).title("My Location"))
+        //googleMap.addMarker(MarkerOptions().position(location1).title("My Location"))
 
         val location2 = LatLng(28.56059429542479, 77.31594540563349)
-        googleMap.addMarker(MarkerOptions().position(location2).title("My Location2"))
+        //googleMap.addMarker(MarkerOptions().position(location2).title("My Location2"))
 
         googleMap.setOnMarkerClickListener(this)
         setUpMap()
+        fetchDataFromFirebase()
     }
 
     private fun setUpMap(){
@@ -95,7 +105,36 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
     }
 
     private fun fetchDataFromFirebase(){
-        //val db = Firebase.fire
+         db.collection("vendors")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result){
+                    viewModel.setSellerData(
+                        SellerDto(
+                            document.getString("Name").toString(),
+                            document.getString("Type").toString(),
+                            document.getString("Lat")!!.toString(),
+                            document.getString("Lng")!!.toString()
+                        )
+                    )
+                    setData()
+                    Log.d("Data",viewModel.sellerData.toString())
+                }
+            }
+            .addOnFailureListener{exception ->
+                Log.d("Eror","Error getting Document",exception)
+            }
+    }
+
+    private fun setData(){
+        viewModel.sellerData.observe(this){
+            val modal = it as SellerDto
+            Log.d("Name",modal.Name)
+            val latitude = modal.Lat.toDouble()
+            val longitude = modal.Lng.toDouble()
+            val directions = LatLng(latitude,longitude)
+            googleMap.addMarker(MarkerOptions().position(directions).title("Testing"))
+        }
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
