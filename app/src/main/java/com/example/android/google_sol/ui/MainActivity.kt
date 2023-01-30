@@ -141,6 +141,8 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
             val latitude = modal.Lat.toDouble()
             val longitude = modal.Lng.toDouble()
             val directions = LatLng(latitude,longitude)
+            val name  = modal.Name
+            val type = modal.Type
             viewModel.setSellerDisplayForBottomNavigation(
                 SellerDto(
                     modal.Name,
@@ -149,13 +151,9 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
                     modal.Lng
                 )
             )
-            googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name+  modal.Type)
-//                .icon(
-//                BitmapDescriptorFactory.fromResource(R.drawable.location)
-//            )
-            )
+            googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name+  modal.Type))
             googleMap.setOnMarkerClickListener { marker ->
-                showBottomSheet(modal.Name,modal.Type)
+                showBottomSheet(name,type)
                 Toast.makeText(this,"fff",Toast.LENGTH_SHORT).show()
                 false
             }
