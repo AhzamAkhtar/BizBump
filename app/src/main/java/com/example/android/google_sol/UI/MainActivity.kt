@@ -1,12 +1,12 @@
-package com.example.android.google_sol
+package com.example.android.google_sol.UI
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.Button
 import androidx.core.app.ActivityCompat
+import com.example.android.google_sol.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -60,7 +60,8 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
         ) {
 
             ActivityCompat.requestPermissions(this , arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_REQUEST_CODE)
+                LOCATION_REQUEST_CODE
+            )
 
             return
         }
@@ -93,11 +94,15 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
         dialog.show()
     }
 
-
+    private fun fetchDataFromFirebase(){
+        //val db = Firebase.fire
+    }
 
     override fun onMarkerClick(p0: Marker): Boolean {
         showBottomSheet()
         return true
     }
+
+
 
 }
