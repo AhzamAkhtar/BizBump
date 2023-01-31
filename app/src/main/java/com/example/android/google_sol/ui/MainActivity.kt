@@ -126,13 +126,15 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
                         )
                     )
                     setData()
-                    Log.d("Data",viewModel.sellerData.toString())
+                    //Log.d("Data",viewModel.sellerData.toString())
                 }
             }
             .addOnFailureListener{exception ->
                 Log.d("Error","Error getting Document",exception)
             }
     }
+
+
 
     private fun setData(){
         viewModel.sellerData.observe(this){
@@ -153,8 +155,17 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
             )
             googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name+  modal.Type))
             googleMap.setOnMarkerClickListener { marker ->
-                showBottomSheet(name,type)
-                Toast.makeText(this,"fff",Toast.LENGTH_SHORT).show()
+                Log.d("Position",marker.position.latitude.toString())
+                db.collection("vendors")
+                    .whereEqualTo("Lat",marker.position.latitude.toString())
+                    .get()
+                    .addOnSuccessListener { documents->
+                        for(document in documents){
+                            val Name = document.getString("Name")
+                            Toast.makeText(this,Name.toString(),Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                //showBottomSheet(name,type)
                 false
             }
 
