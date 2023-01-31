@@ -16,6 +16,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivUserProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/userimage"
+        app:layout_constraintTop_toBottomOf="@+id/topLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvUserProfile"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="U"-->
+<!--        android:textSize="60sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/ivUserProfile"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/ivUserProfile"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/ivUserProfile"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/ivUserProfile" />-->
+
     <TextView
         android:id="@+id/headText"
         android:layout_width="0dp"
@@ -23,13 +49,12 @@
         android:layout_marginStart="23dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="30dp"
-
         android:text="Raju Vasundra"
         android:textColor="#000000"
         android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topLine" />
+        app:layout_constraintTop_toBottomOf="@id/ivUserProfile" />
 
     <TextView
         android:id="@+id/subText"

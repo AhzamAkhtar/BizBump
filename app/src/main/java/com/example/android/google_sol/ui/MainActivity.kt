@@ -8,17 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import com.bumptech.glide.Glide
 import com.example.android.google_sol.DataClass.SellerDto
 import com.example.android.google_sol.R
 import com.example.android.google_sol.daos.SellerViewModal
-import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.example.android.google_sol.databinding.LayoutBottomSheetBinding
+import com.firebase.ui.auth.data.model.User
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -33,13 +31,14 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+    private val binding by lazy {LayoutBottomSheetBinding.inflate(layoutInflater)}
     lateinit var googleMap: GoogleMap
     private lateinit var lastLocation: Location
     private val db = FirebaseFirestore.getInstance()
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel: SellerViewModal by viewModels()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var geocoder: Geocoder
+
     companion object {
         private const val LOCATION_REQUEST_CODE = 1
     }
@@ -106,7 +105,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         markerOptions.title("$currentLatLong")
     }
 
-    private fun showBottomSheet(headingTextInput: String, subTextInput: String , subTextAddress : String) {
+    private fun showBottomSheet(
+        headingTextInput: String,
+        subTextInput: String,
+        subTextAddress: String,
+        profileUrl: String
+    ) {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
         dialog.setContentView(view)
@@ -114,9 +118,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         val headingText = view.findViewById<TextView>(R.id.headText)
         val subText = view.findViewById<TextView>(R.id.subText)
         val subAddress = view.findViewById<TextView>(R.id.tvAddress)
+        val userImage = view.findViewById<ImageView>(R.id.ivUserProfile)
         headingText.text = headingTextInput
         subText.text = subTextInput
         subAddress.text = subTextAddress
+        if (userImage != null) {
+            Glide.with(this)
+                .load(profileUrl)
+                .into(userImage)
+        }
+
         orderButton.setOnClickListener {
             dialog.dismiss()
         }
@@ -169,7 +180,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     private fun addDataToBottomSheet() {
         googleMap.setOnMarkerClickListener { marker ->
-           val address =  getSellerAddress(marker.position.latitude.toString(),marker.position.longitude.toString())
+            val address = getSellerAddress(
+                marker.position.latitude.toString(),
+                marker.position.longitude.toString()
+            )
             Log.d("Position", marker.position.latitude.toString())
             db.collection("vendors")
                 .whereEqualTo("Lat", marker.position.latitude.toString())
@@ -178,9 +192,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                     for (document in documents) {
                         val Name = document.getString("Name")
                         val Type = document.getString("Type")
+                        val UserImage = document.getString("ProfileUrl")
+
                         if (Name != null) {
                             //binding.progressBar.visibility = View.VISIBLE
-                            showBottomSheet(Name, Type.toString(),address)
+                            showBottomSheet(Name, Type.toString(), address, UserImage.toString())
                             //binding.progressBar.visibility = View.GONE
                         }
                     }
@@ -190,10 +206,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
-    private fun getSellerAddress(latitude: String , longitude:String) :String{
-        val addressGeocoder = geocoder.getFromLocation(latitude.toDouble(),longitude.toDouble(),1)
+    private fun getSellerAddress(latitude: String, longitude: String): String {
+        val addressGeocoder = geocoder.getFromLocation(latitude.toDouble(), longitude.toDouble(), 1)
         val fullAddress = addressGeocoder?.get(0)?.getAddressLine(0)
-        Log.d("Address",fullAddress.toString())
+        Log.d("Address", fullAddress.toString())
         return fullAddress.toString()
     }
 
