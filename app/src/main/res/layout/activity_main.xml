@@ -5,36 +5,119 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_screen_background">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/headingCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="#BF4503"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Welcome Back ......"
-        android:textColor="#000000"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:textSize="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-        />
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="31dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/mapCard"
+            >
+
+            <TextView
+                android:layout_width="400dp"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:text="Buy from your local vendors"
+                android:textColor="@color/white"
+                android:layout_marginTop="1dp"
+                android:textSize="24dp"
+                />
+
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:text="support them !!"
+                android:textColor="@color/white"
+                android:layout_marginTop="6dp"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:text="empower them....."
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="20dp"
+                />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/subheadingCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#0A3655"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/headingCard">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Explore all vendors near you ! ..."
+            android:textColor="@color/white"
+            android:gravity = "center"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="25dp"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mapCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/subheadingCard"
+        >
 
         <fragment
             android:id="@+id/maps"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="500dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
