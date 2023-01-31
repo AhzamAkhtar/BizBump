@@ -1,11 +1,15 @@
 package com.example.android.google_sol.ui
+
 import android.Manifest
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -14,6 +18,7 @@ import com.example.android.google_sol.DataClass.SellerDto
 import com.example.android.google_sol.R
 import com.example.android.google_sol.daos.SellerViewModal
 import com.example.android.google_sol.databinding.ActivityMainBinding
+import com.example.android.google_sol.databinding.LayoutBottomSheetBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,18 +29,21 @@ import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.maps.android.ktx.markerClickEvents
+import java.util.*
 
 
-class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
-    lateinit var googleMap : GoogleMap
-    private lateinit var lastLocation : Location
+class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+    lateinit var googleMap: GoogleMap
+    private lateinit var lastLocation: Location
     private val db = FirebaseFirestore.getInstance()
-    private val binding by lazy {ActivityMainBinding.inflate(layoutInflater)}
-    private val viewModel : SellerViewModal by viewModels()
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewModel: SellerViewModal by viewModels()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var geocoder: Geocoder
     companion object {
-         private const val LOCATION_REQUEST_CODE = 1
+        private const val LOCATION_REQUEST_CODE = 1
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,6 +52,8 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
         mapFragment.getMapAsync(this)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        geocoder = Geocoder(this, Locale.getDefault())
+        //binding.progressBar.visibility = View.GONE
 
         fetchDataFromFirebase()
     }
@@ -62,7 +72,7 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
 
     }
 
-    private fun setUpMap(){
+    private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -72,19 +82,20 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
             ) != PackageManager.PERMISSION_GRANTED
         ) {
 
-            ActivityCompat.requestPermissions(this , arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 LOCATION_REQUEST_CODE
             )
 
             return
         }
         googleMap.isMyLocationEnabled = true
-        fusedLocationProviderClient.lastLocation.addOnSuccessListener(this) {location ->
-            if(location!=null){
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener(this) { location ->
+            if (location != null) {
                 lastLocation = location
-                val currentLatLong = LatLng(location.latitude , lastLocation.longitude)
+                val currentLatLong = LatLng(location.latitude, lastLocation.longitude)
                 placeMarkerOnMap(currentLatLong)
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,13f))
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 13f))
 
             }
         }
@@ -93,30 +104,32 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
     private fun placeMarkerOnMap(currentLatLong: LatLng) {
         val markerOptions = MarkerOptions().position(currentLatLong)
         markerOptions.title("$currentLatLong")
-        //googleMap.addMarker(markerOptions.)
     }
 
-    private fun showBottomSheet(headingTextInput : String , subTextInput : String){
+    private fun showBottomSheet(headingTextInput: String, subTextInput: String , subTextAddress : String) {
         val dialog = BottomSheetDialog(this)
-        val view =  layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
+        val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
         dialog.setContentView(view)
         val orderButton = view.findViewById<Button>(R.id.btnToOrderNow)
         val headingText = view.findViewById<TextView>(R.id.headText)
         val subText = view.findViewById<TextView>(R.id.subText)
+        val subAddress = view.findViewById<TextView>(R.id.tvAddress)
         headingText.text = headingTextInput
         subText.text = subTextInput
-        orderButton.setOnClickListener{
+        subAddress.text = subTextAddress
+        orderButton.setOnClickListener {
             dialog.dismiss()
         }
 
         dialog.show()
+
     }
 
-    private fun fetchDataFromFirebase(){
-         db.collection("vendors")
+    private fun fetchDataFromFirebase() {
+        db.collection("vendors")
             .get()
             .addOnSuccessListener { result ->
-                for (document in result){
+                for (document in result) {
                     viewModel.setSellerData(
                         SellerDto(
                             document.getString("Name").toString(),
@@ -126,25 +139,20 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
                         )
                     )
                     setData()
-                    //Log.d("Data",viewModel.sellerData.toString())
                 }
             }
-            .addOnFailureListener{exception ->
-                Log.d("Error","Error getting Document",exception)
+            .addOnFailureListener { exception ->
+                Log.d("Error", "Error getting Document", exception)
             }
     }
 
 
-
-    private fun setData(){
-        viewModel.sellerData.observe(this){
+    private fun setData() {
+        viewModel.sellerData.observe(this) {
             val modal = it as SellerDto
-            //Log.d("Name",modal.Name)
             val latitude = modal.Lat.toDouble()
             val longitude = modal.Lng.toDouble()
-            val directions = LatLng(latitude,longitude)
-            val name  = modal.Name
-            val type = modal.Type
+            val directions = LatLng(latitude, longitude)
             viewModel.setSellerDisplayForBottomNavigation(
                 SellerDto(
                     modal.Name,
@@ -153,23 +161,40 @@ class MainActivity : AppCompatActivity()  , OnMapReadyCallback , GoogleMap.OnMar
                     modal.Lng
                 )
             )
-            googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name+  modal.Type))
-            googleMap.setOnMarkerClickListener { marker ->
-                Log.d("Position",marker.position.latitude.toString())
-                db.collection("vendors")
-                    .whereEqualTo("Lat",marker.position.latitude.toString())
-                    .get()
-                    .addOnSuccessListener { documents->
-                        for(document in documents){
-                            val Name = document.getString("Name")
-                            Toast.makeText(this,Name.toString(),Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                //showBottomSheet(name,type)
-                false
-            }
+            googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name + modal.Type))
+            addDataToBottomSheet()
 
         }
+    }
+
+    private fun addDataToBottomSheet() {
+        googleMap.setOnMarkerClickListener { marker ->
+           val address =  getSellerAddress(marker.position.latitude.toString(),marker.position.longitude.toString())
+            Log.d("Position", marker.position.latitude.toString())
+            db.collection("vendors")
+                .whereEqualTo("Lat", marker.position.latitude.toString())
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        val Name = document.getString("Name")
+                        val Type = document.getString("Type")
+                        if (Name != null) {
+                            //binding.progressBar.visibility = View.VISIBLE
+                            showBottomSheet(Name, Type.toString(),address)
+                            //binding.progressBar.visibility = View.GONE
+                        }
+                    }
+
+                }
+            false
+        }
+    }
+
+    private fun getSellerAddress(latitude: String , longitude:String) :String{
+        val addressGeocoder = geocoder.getFromLocation(latitude.toDouble(),longitude.toDouble(),1)
+        val fullAddress = addressGeocoder?.get(0)?.getAddressLine(0)
+        Log.d("Address",fullAddress.toString())
+        return fullAddress.toString()
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
