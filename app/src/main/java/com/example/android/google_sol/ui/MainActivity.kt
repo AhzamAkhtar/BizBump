@@ -7,7 +7,6 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -16,7 +15,6 @@ import com.example.android.google_sol.DataClass.SellerDto
 import com.example.android.google_sol.R
 import com.example.android.google_sol.daos.SellerViewModal
 import com.example.android.google_sol.databinding.LayoutBottomSheetBinding
-import com.firebase.ui.auth.data.model.User
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -26,13 +24,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.maps.android.ktx.markerClickEvents
 import java.util.*
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-    private val binding by lazy {LayoutBottomSheetBinding.inflate(layoutInflater)}
+    private val binding by lazy { LayoutBottomSheetBinding.inflate(layoutInflater) }
     lateinit var googleMap: GoogleMap
+    private var hashMap: HashMap<String, String> = HashMap<String, String>()
     private lateinit var lastLocation: Location
     private val db = FirebaseFirestore.getInstance()
     private val viewModel: SellerViewModal by viewModels()
@@ -95,7 +93,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 val currentLatLong = LatLng(location.latitude, lastLocation.longitude)
                 placeMarkerOnMap(currentLatLong)
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 13f))
-
+                hashMap["userLat"] = currentLatLong.latitude.toString()
+                hashMap["userLng"] = currentLatLong.longitude.toString()
             }
         }
     }
@@ -114,6 +113,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
         dialog.setContentView(view)
+
+        val distance = getDistanceBTSellerAnsUser(
+            hashMap["sellerLat"].toString(),
+            hashMap["sellerLng"].toString(),
+            hashMap["userLat"].toString(),
+            hashMap["userLng"].toString()
+        )
+        //Toast.makeText(this,distance.toString(),Toast.LENGTH_SHORT).show()
+        val distanceTextView = view.findViewById<TextView>(R.id.distanceText)
+        distanceTextView.text = "Distance"+ "-" +(distance/1000).toString().subSequence(0,3)+"Km"
         val orderButton = view.findViewById<Button>(R.id.btnToOrderNow)
         val headingText = view.findViewById<TextView>(R.id.headText)
         val subText = view.findViewById<TextView>(R.id.subText)
@@ -184,6 +193,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 marker.position.latitude.toString(),
                 marker.position.longitude.toString()
             )
+            hashMap["sellerLat"] = marker.position.latitude.toString()
+            hashMap["sellerLng"] = marker.position.longitude.toString()
             Log.d("Position", marker.position.latitude.toString())
             db.collection("vendors")
                 .whereEqualTo("Lat", marker.position.latitude.toString())
@@ -211,6 +222,23 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         val fullAddress = addressGeocoder?.get(0)?.getAddressLine(0)
         Log.d("Address", fullAddress.toString())
         return fullAddress.toString()
+    }
+
+    private fun getDistanceBTSellerAnsUser(
+        sellerLat: String,
+        sellerLng: String,
+        userLat: String,
+        userLng: String
+    ): Double {
+        val startLocation = Location("location1")
+        startLocation.latitude = userLat.toDouble()
+        startLocation.longitude = userLng.toDouble()
+
+        val endLocation = Location("location2")
+        endLocation.latitude = sellerLat.toDouble()
+        endLocation.longitude = sellerLng.toDouble()
+
+        return startLocation.distanceTo(endLocation).toDouble()
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
