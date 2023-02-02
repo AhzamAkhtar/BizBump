@@ -2,6 +2,7 @@ package com.example.android.google_sol.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
@@ -108,7 +109,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         headingTextInput: String,
         subTextInput: String,
         subTextAddress: String,
-        profileUrl: String
+        profileUrl: String,
+        open:String
     ) {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
@@ -126,11 +128,20 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         val orderButton = view.findViewById<Button>(R.id.btnToOrderNow)
         val headingText = view.findViewById<TextView>(R.id.headText)
         val subText = view.findViewById<TextView>(R.id.subText)
+        val openText = view.findViewById<TextView>(R.id.openText)
         val subAddress = view.findViewById<TextView>(R.id.tvAddress)
         val userImage = view.findViewById<ImageView>(R.id.ivUserProfile)
         headingText.text = headingTextInput
         subText.text = subTextInput
         subAddress.text = subTextAddress
+        if(open=="Open"){
+            openText.text = open
+            openText.setTextColor(Color.parseColor("#80ed99"))
+        }
+        if(open=="Closed"){
+            openText.text = open
+            openText.setTextColor(Color.parseColor("#d90429"))
+        }
         if (userImage != null) {
             Glide.with(this)
                 .load(profileUrl)
@@ -204,10 +215,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                         val Name = document.getString("Name")
                         val Type = document.getString("Type")
                         val UserImage = document.getString("ProfileUrl")
-
+                        val open  = document.getString("open")
                         if (Name != null) {
                             //binding.progressBar.visibility = View.VISIBLE
-                            showBottomSheet(Name, Type.toString(), address, UserImage.toString())
+                            showBottomSheet(Name, Type.toString(), address, UserImage.toString(),open.toString())
                             //binding.progressBar.visibility = View.GONE
                         }
                     }
