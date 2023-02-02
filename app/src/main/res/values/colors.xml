@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#ced4da</color>
     <color name="testing">#e9ecef</color>
+    <color name="darkBlue">#14213d</color>
 
 </resources>

@@ -9,15 +9,19 @@
         android:id="@+id/headingCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#14213d"
         app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="@color/testing"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background = "@drawable/header_background"
+            android:orientation="horizontal"
+
+            >
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -26,8 +30,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="3dp"
-                android:orientation="vertical"
                 android:layout_weight="0.5"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/mapCard"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -68,8 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
-                android:src="@drawable/vendor_foreground"
-                />
+                android:src="@drawable/vendor_foreground" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -124,7 +127,6 @@
                         android:text="from vendors..."
                         android:textColor="@color/black"
                         android:textSize="25dp" />
-
 
 
                     <androidx.appcompat.widget.LinearLayoutCompat
