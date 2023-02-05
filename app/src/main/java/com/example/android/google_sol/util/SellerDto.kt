@@ -1,4 +1,4 @@
-package com.example.android.google_sol.dataClass
+package com.example.android.google_sol.util
 
 data class SellerDto(
     val Name : String,

@@ -18,9 +18,9 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.example.android.google_sol.dataClass.BuyingDTO
-import com.example.android.google_sol.dataClass.SellerDto
 import com.example.android.google_sol.R
+import com.example.android.google_sol.util.BuyingDTO
+import com.example.android.google_sol.util.SellerDto
 import com.example.android.google_sol.util.SellerViewModal
 import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -240,7 +240,8 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
                         val Type = document.getString("Type")
                         val UserImage = document.getString("ProfileUrl")
                         val open  = document.getString("open")
-                        Toast.makeText(requireActivity(),"Setted", Toast.LENGTH_SHORT).show()
+                        val rr = document.get("products")
+                        Toast.makeText(requireActivity(),rr.toString(), Toast.LENGTH_SHORT).show()
                         if (Name != null) {
                             //binding.progressBar.visibility = View.VISIBLE
                             showBottomSheet(Name, Type.toString(), address, UserImage.toString(),open.toString())

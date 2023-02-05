@@ -3,8 +3,6 @@ package com.example.android.google_sol.util
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.google_sol.dataClass.BuyingDTO
-import com.example.android.google_sol.dataClass.SellerDto
 
 class SellerViewModal  : ViewModel(){
     private val _sellerData = MutableLiveData<SellerDto>()
