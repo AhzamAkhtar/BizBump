@@ -9,16 +9,15 @@
         android:id="@+id/headingCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         app:cardBackgroundColor="@color/testing"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background = "@drawable/header_background"
+            android:background="@drawable/header_background"
             android:orientation="horizontal"
 
             >
@@ -79,237 +78,231 @@
     </androidx.cardview.widget.CardView>
 
     <GridLayout
-        android:id="@+id/glBasicInformation"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="10dp"
-        android:columnCount="1"
-        android:rowCount="2"
+        android:id="@+id/gvBasicCards1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:columnCount="3"
+        android:rowCount="3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headingCard">
 
         <androidx.cardview.widget.CardView
-            android:layout_rowWeight="0.1"
+            android:id="@+id/cards1"
+            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="20dp"
+            android:layout_marginRight="16dp"
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="20dp">
 
-            >
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llSecondLinec"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/grey"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="0.5"
-                        android:text="Buy fresh fruits"
-                        android:textColor="@color/black"
-                        android:textSize="25dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="0.3"
-                        android:text="from local vendors..."
-                        android:textColor="@color/black"
-                        android:textSize="25dp" />
-
-
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="0.3"
-                            android:background="@drawable/button_style"
-                            android:text="Search in your area now.."
-                            android:textColor="@color/white"
-                            android:textSize="20dp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/arrow" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/fuits_foreground"
-
-                    />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vegetable_foreground" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/secondCard"
-            android:layout_rowWeight="0.1"
+            android:id="@+id/cards2"
+            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:cardBackgroundColor="@color/grey"
             app:cardCornerRadius="20dp">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llSecondLine"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/grey"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:src="@drawable/fuits_foreground" />
+        </androidx.cardview.widget.CardView>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey"
-                    android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cards3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="20dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="0.5"
-                        android:text="Buy vegetable"
-                        android:textColor="@color/black"
-                        android:textSize="25dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="0.3"
-                        android:text="from local vendors..."
-                        android:textColor="@color/black"
-                        android:textSize="25dp" />
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="0.5"
-                            android:background="@drawable/button_style"
-                            android:text="Search in your area now.."
-                            android:textColor="@color/white"
-                            android:textSize="20dp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/arrow" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/electrician_foreground" />
+        </androidx.cardview.widget.CardView>
 
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/gvBasicCards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gvBasicCards1">
+
+        <TextView
+            android:id="@+id/cards111"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            android:text="Vegetables"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/cards112"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            android:text="Fruits"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/cards113"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            android:text="Electrician"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+
+        </TextView>
 
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/vegetable_foreground"
+    </GridLayout>
 
-                    />
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <GridLayout
+        android:id="@+id/gvBasicCards2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gvBasicCards">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cards14"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hammer_foreground" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cards21"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plumber_foreground" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cards33"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/barber_foreground" />
         </androidx.cardview.widget.CardView>
 
 
     </GridLayout>
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/subheadingCard"
+    <GridLayout
+        android:id="@+id/gvBasicCards111"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        app:cardBackgroundColor="@color/grey"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:columnCount="3"
+        android:rowCount="3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/glBasicInformation">
+        app:layout_constraintTop_toBottomOf="@+id/gvBasicCards2">
 
-        <GridLayout
-            android:id="@+id/others"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:columnCount="4"
-            android:rowCount="1">
+        <TextView
+            android:id="@+id/cards1111"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            android:text="Hardware"
+            android:textColor="@color/black"
+            android:textSize="20dp">
 
-            <ImageView
-                android:layout_width="91dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_weight="0.5"
-                android:src="@drawable/barber_foreground"
+        </TextView>
 
-                />
+        <TextView
+            android:id="@+id/cards1121"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            android:text="Plumber"
+            android:textColor="@color/black"
+            android:textSize="20dp">
 
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_weight="0.5"
-                android:src="@drawable/plumber_foreground"
+        </TextView>
 
-                />
+        <TextView
+            android:id="@+id/cards1131"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginRight="16dp"
+            android:text="barber"
+            android:textColor="@color/black"
+            android:textSize="20dp">
 
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_weight="0.5"
-                android:src="@drawable/electrician_foreground"
+        </TextView>
 
-                />
 
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_weight="0.5"
-                android:src="@drawable/hammer_foreground"
+    </GridLayout>
+    
+    <TextView
+        android:id="@+id/tvAroundYou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gvBasicCards111"
+        android:text = "Around You"
+        android:textColor = "@color/black"
+        android:textSize = "20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        >
 
-                />
-        </GridLayout>
-
-    </androidx.cardview.widget.CardView>
-
+    </TextView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mapCard"
@@ -323,13 +316,13 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subheadingCard">
+        app:layout_constraintTop_toBottomOf="@+id/tvAroundYou">
 
         <fragment
             android:id="@+id/maps"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
