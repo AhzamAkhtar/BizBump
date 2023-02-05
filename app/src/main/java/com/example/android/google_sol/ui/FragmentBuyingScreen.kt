@@ -52,19 +52,19 @@ class FragmentBuyingScreen : Fragment() {
             binding.tvAddress.text = modal.address
 
 
-            db.collection("products")
+            db.collection("vendors")
                 .whereEqualTo("Name", modal.Name)
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
                         val name = document.getString("Name")
-                        val rr = document.get("products").toString()
+                        val rr = document.get("products").toString().toList()
                         Toast.makeText(requireActivity(), rr.toString(), Toast.LENGTH_SHORT).show()
                         if (name != null) {
-                            for (item in rr.indices) {
+                            for (item in rr) {
                                 mainData.add(
                                     recyclerDto(
-                                        rr[item].toString()
+                                        item.toString()
                                     )
                                 )
                                 itemAdapter.notifyItemChanged(itemAdapter.itemCount)
