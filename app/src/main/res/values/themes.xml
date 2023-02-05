@@ -9,7 +9,7 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.Google_sol" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.Google_sol" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -21,5 +21,10 @@
         <!-- Status bar color. -->
 
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="myAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackground">@color/white</item>
+
     </style>
 </resources>

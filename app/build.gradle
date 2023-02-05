@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "com.example.android.google_sol"
         minSdk 22
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 

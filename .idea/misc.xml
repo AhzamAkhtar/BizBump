@@ -6,6 +6,7 @@
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.147" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.198" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/button_style.xml" value="0.198" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/buying_screen.xml" value="0.1955" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/cards_background.xml" value="0.193" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/electrician_background.xml" value="0.193" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/electrician_foreground.xml" value="0.193" />
@@ -23,7 +24,10 @@
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/userimage.xml" value="0.1" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/vegetable_foreground.xml" value="0.193" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/activity_main.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/buying.xml" value="0.20778110303548525" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/item_layout.xml" value="0.20778110303548525" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/main_screen_activity.xml" value="0.1" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/marker.xml" value="0.1" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/menu/nav_menu.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/mipmap-anydpi-v26/fuits.xml" value="0.1" />
