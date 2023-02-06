@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -66,15 +65,15 @@ class FragmentBuyingScreen : Fragment() {
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
                         val rr: String =
-                            document.get("products").toString().removePrefix("[").removeSuffix("]")
+                            document.get("product").toString().removePrefix("{").removeSuffix("}")
                                 .removeSuffix(" ")
                                 .removePrefix(" ")
-                        val result: List<String> = rr.split(",").map { it.trim() }
+                        val result: List<String> = rr.split(",")
                         result.forEach {
                             Log.d("FINAL", it)
                             mainData.add(
                                 recyclerDto(
-                                    it
+                                    it.replace("="," - ") + " Kg"
                                 )
                             )
                             itemAdapter.notifyDataSetChanged()
