@@ -1,5 +1,6 @@
 package com.example.android.google_sol.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -35,7 +36,6 @@ class FragmentBuyingScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getData()
-
         binding.recyclerViewItem.layoutManager = LinearLayoutManager(
             requireActivity(), RecyclerView.VERTICAL, false
         )
@@ -51,6 +51,14 @@ class FragmentBuyingScreen : Fragment() {
             binding.distanceText.text = modal.distance
             binding.tvAddress.text = modal.address
 
+            if (modal.open == "Open") {
+                binding.openText.setTextColor(Color.parseColor("#80ed99"))
+                binding.openText.text = modal.open
+            }
+            if(modal.open=="Closed"){
+                binding.openText.setTextColor(Color.parseColor("#d90429"))
+                binding.openText.text = modal.open
+            }
 
             db.collection("vendors")
                 .whereEqualTo("Name", modal.Name)
@@ -74,5 +82,6 @@ class FragmentBuyingScreen : Fragment() {
                     }
                 }
         }
+
     }
 }

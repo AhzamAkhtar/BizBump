@@ -152,6 +152,7 @@
             android:layout_columnWeight="1"
             android:layout_marginRight="16dp"
             android:text="Vegetables"
+            android:gravity = "center"
             android:textColor="@color/black"
             android:textSize="20dp">
 
@@ -163,6 +164,7 @@
             android:layout_columnWeight="1"
             android:layout_marginRight="16dp"
             android:text="Fruits"
+            android:gravity = "center"
             android:textColor="@color/black"
             android:textSize="20dp">
 
@@ -174,6 +176,7 @@
             android:layout_columnWeight="1"
             android:layout_marginRight="16dp"
             android:text="Electrician"
+            android:gravity = "center"
             android:textColor="@color/black"
             android:textSize="20dp">
 
@@ -259,6 +262,7 @@
             android:layout_columnWeight="1"
             android:layout_marginRight="16dp"
             android:text="Hardware"
+            android:gravity = "center"
             android:textColor="@color/black"
             android:textSize="20dp">
 
@@ -270,6 +274,7 @@
             android:layout_columnWeight="1"
             android:layout_marginRight="16dp"
             android:text="Plumber"
+            android:gravity = "center"
             android:textColor="@color/black"
             android:textSize="20dp">
 
@@ -281,6 +286,7 @@
             android:layout_columnWeight="1"
             android:layout_marginRight="16dp"
             android:text="barber"
+            android:gravity = "center"
             android:textColor="@color/black"
             android:textSize="20dp">
 

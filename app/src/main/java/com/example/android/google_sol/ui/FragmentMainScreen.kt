@@ -241,7 +241,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
                         val UserImage = document.getString("ProfileUrl")
                         val open  = document.getString("open")
                         val rr = document.get("products")
-                        Toast.makeText(requireActivity(),rr.toString(), Toast.LENGTH_SHORT).show()
+
                         if (Name != null) {
                             //binding.progressBar.visibility = View.VISIBLE
                             showBottomSheet(Name, Type.toString(), address, UserImage.toString(),open.toString())
