@@ -1,6 +1,7 @@
 package com.example.android.google_sol.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,6 @@ class FragmentBuyingScreen : Fragment() {
     private fun getData() {
         viewModel.dataForBuying.observe(requireActivity()) {
             val modal = it as BuyingDTO
-            Toast.makeText(requireActivity(), modal.toString(), Toast.LENGTH_SHORT).show()
             binding.headText.text = modal.Name
             binding.subText.text = modal.Type
             binding.openText.text = modal.open
@@ -57,24 +57,22 @@ class FragmentBuyingScreen : Fragment() {
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
-                        val name = document.getString("Name")
-                        val rr = document.get("products").toString().toList()
-                        Toast.makeText(requireActivity(), rr.toString(), Toast.LENGTH_SHORT).show()
-                        if (name != null) {
-                            for (item in rr) {
-                                mainData.add(
-                                    recyclerDto(
-                                        item.toString()
-                                    )
+                        val rr: String =
+                            document.get("products").toString().removePrefix("[").removeSuffix("]")
+                                .removeSuffix(" ")
+                                .removePrefix(" ")
+                        val result: List<String> = rr.split(",").map { it.trim() }
+                        result.forEach {
+                            Log.d("FINAL", it)
+                            mainData.add(
+                                recyclerDto(
+                                    it
                                 )
-                                itemAdapter.notifyItemChanged(itemAdapter.itemCount)
-                            }
+                            )
+                            itemAdapter.notifyDataSetChanged()
                         }
-
                     }
-
                 }
         }
-
     }
 }
