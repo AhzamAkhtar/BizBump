@@ -72,7 +72,6 @@
         android:id="@+id/openText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:text="Open"
@@ -82,6 +81,17 @@
         app:layout_constraintStart_toStartOf="@+id/distanceText"
         />
 
+    <ImageView
+        android:id = "@+id/ivCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src = "@drawable/phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceText"
+        app:layout_constraintStart_toStartOf="@+id/openText"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        />
     <TextView
         android:id="@+id/subText"
         android:layout_width="wrap_content"

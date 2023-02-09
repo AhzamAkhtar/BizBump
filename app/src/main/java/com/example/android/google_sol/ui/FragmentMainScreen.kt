@@ -1,10 +1,12 @@
 package com.example.android.google_sol.ui
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,16 +15,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.android.google_sol.R
+import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.example.android.google_sol.util.BuyingDTO
 import com.example.android.google_sol.util.SellerDto
 import com.example.android.google_sol.util.SellerViewModal
-import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -35,6 +36,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+
 
 class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -128,7 +130,8 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         subTextInput: String,
         subTextAddress: String,
         profileUrl: String,
-        open:String
+        open:String,
+        phoneNumber:String,
     ) {
         val dialog = BottomSheetDialog(requireActivity())
         val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
@@ -150,6 +153,12 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         val openText = view.findViewById<TextView>(R.id.openText)
         val subAddress = view.findViewById<TextView>(R.id.tvAddress)
         val userImage = view.findViewById<ImageView>(R.id.ivUserProfile)
+        val callImage = view.findViewById<ImageView>(R.id.ivCall)
+        callImage.setOnClickListener{
+            val dialIntent = Intent(Intent.ACTION_DIAL)
+            dialIntent.data = Uri.parse("tel:" + phoneNumber)
+            startActivity(dialIntent)
+        }
         headingText.text = headingTextInput
         subText.text = subTextInput
         subAddress.text = subTextAddress
@@ -240,11 +249,11 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
                         val Type = document.getString("Type")
                         val UserImage = document.getString("ProfileUrl")
                         val open  = document.getString("open")
-                        val rr = document.get("products")
+                        val phoneNumber = document.get("phoneNumber")
 
                         if (Name != null) {
                             //binding.progressBar.visibility = View.VISIBLE
-                            showBottomSheet(Name, Type.toString(), address, UserImage.toString(),open.toString())
+                            showBottomSheet(Name, Type.toString(), address, UserImage.toString(),open.toString(),phoneNumber.toString())
 
                             //binding.progressBar.visibility = View.GONE
                         }
