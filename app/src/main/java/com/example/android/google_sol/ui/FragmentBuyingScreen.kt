@@ -6,23 +6,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.google_sol.util.BuyingDTO
-import com.example.android.google_sol.util.SellerViewModal
 import com.example.android.google_sol.databinding.BuyingBinding
-import com.example.android.google_sol.util.RecyclerViewAdapter
-import com.example.android.google_sol.util.recyclerDto
+import com.example.android.google_sol.util.*
 import com.google.firebase.firestore.FirebaseFirestore
 
-class FragmentBuyingScreen : Fragment() {
+class FragmentBuyingScreen : Fragment(), ItemClickListener {
     private val binding by lazy { BuyingBinding.inflate(layoutInflater) }
     private val viewModel: SellerViewModal by activityViewModels()
     private val db = FirebaseFirestore.getInstance()
     private val mainData = ArrayList<recyclerDto>()
-    private val itemAdapter by lazy { RecyclerViewAdapter(mainData) }
+    private val itemAdapter by lazy { RecyclerViewAdapter(mainData, this ) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,10 +68,15 @@ class FragmentBuyingScreen : Fragment() {
                                 .removePrefix(" ")
                         val result: List<String> = rr.split(",")
                         result.forEach {
+                            val result1: List<String> = rr.split("=")
+                            Toast.makeText(requireActivity(),result1[1],Toast.LENGTH_SHORT).show()
                             Log.d("FINAL", it)
                             mainData.add(
                                 recyclerDto(
-                                    it.replace("="," - ") + " Kg"
+                                    it.split("=")[0],
+                                     0,
+                                    0,
+                                    it.split("=")[1] + " per Kg",
                                 )
                             )
                             itemAdapter.notifyDataSetChanged()
@@ -83,4 +86,16 @@ class FragmentBuyingScreen : Fragment() {
         }
 
     }
+
+    override fun sub(textData: recyclerDto, position: Int) {
+        textData.itemCount -=1
+        itemAdapter.notifyItemChanged(position)
+    }
+
+    override fun add(textData: recyclerDto, position: Int) {
+        textData.itemCount +=1
+        itemAdapter.notifyItemChanged(position)
+    }
+
+
 }

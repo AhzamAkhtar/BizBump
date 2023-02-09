@@ -6,5 +6,4 @@ data class SellerDto(
     val Lat : String,
     val Lng : String,
     val open : String,
-
 )

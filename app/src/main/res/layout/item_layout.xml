@@ -11,46 +11,94 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/stringText"
-            android:layout_margin="16dp"
-            tools:text="Sample Data"
-            android:textSize="18sp"
-            android:layout_toStartOf="@+id/controls"
-            android:textColor="@android:color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:id="@+id/titles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/stringText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                tools:text="Sample Data" />
+
+            <TextView
+                android:id="@+id/tvprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="12perKG" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/controls"
-            android:weightSum="3"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content">
+            android:weightSum="3">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/minus"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text=" - "
-                android:layout_height="wrap_content"/>
+                android:background="@drawable/button_background"
+                android:backgroundTint="#0066FF"
+                android:gravity="center"
+                android:letterSpacing="0.01"
+                android:text="-"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
                 android:id="@+id/itemCount"
-                tools:text="0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="16dp"
                 android:textAlignment="center"
-                android:layout_height="wrap_content"/>
+                android:gravity = "center"
+                android:textSize = "26dp"
+                tools:text="0" />
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/add"
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text=" + "
-                android:layout_height="wrap_content"/>
+                android:background="@drawable/button_background"
+                android:backgroundTint="#0066FF"
+                android:gravity="center"
+                android:letterSpacing="0.01"
+                android:text="+"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
