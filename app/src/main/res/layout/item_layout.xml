@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="0dp"
+    android:layout_marginBottom="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="@color/grey"
-    >
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/stringText"
+            android:layout_margin="16dp"
+            tools:text="Sample Data"
+            android:textSize="18sp"
+            android:layout_toStartOf="@+id/controls"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/controls"
+            android:weightSum="3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="15dp"
-            android:text="Item"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor = "@color/black"
-            />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/minus"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text=" - "
+                android:layout_height="wrap_content"/>
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/itemCount"
+                tools:text="0"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text=" + "
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
