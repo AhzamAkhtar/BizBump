@@ -21,7 +21,7 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
     private val db = FirebaseFirestore.getInstance()
     private val mainData = ArrayList<recyclerDto>()
     private val itemAdapter by lazy { RecyclerViewAdapter(mainData, this ) }
-
+    var finalPrice:Int = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,14 +69,14 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
                         val result: List<String> = rr.split(",")
                         result.forEach {
                             val result1: List<String> = rr.split("=")
-                            Toast.makeText(requireActivity(),result1[1],Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(requireActivity(),result1[1],Toast.LENGTH_SHORT).show()
                             Log.d("FINAL", it)
                             mainData.add(
                                 recyclerDto(
                                     it.split("=")[0],
                                      0,
                                     0,
-                                    it.split("=")[1] + " per Kg",
+                                    it.split("=")[1]+"- per Kg"
                                 )
                             )
                             itemAdapter.notifyDataSetChanged()
@@ -89,11 +89,17 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
 
     override fun sub(textData: recyclerDto, position: Int) {
         textData.itemCount -=1
+        val price = textData.price.split("-")[0]
+        finalPrice -= (1) * price.toInt()
+        binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
     }
 
     override fun add(textData: recyclerDto, position: Int) {
         textData.itemCount +=1
+        val price = textData.price.split("-")[0]
+        finalPrice += (1) * price.toInt()
+        binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
     }
 

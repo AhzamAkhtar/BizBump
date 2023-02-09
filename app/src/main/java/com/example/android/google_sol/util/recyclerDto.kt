@@ -4,5 +4,5 @@ data class recyclerDto(
     var title : String,
     val id:Int,
     var itemCount:Int,
-    var price : String
+    var price : String,
 )

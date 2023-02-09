@@ -42,7 +42,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 tools:text="12perKG" />
 
         </LinearLayout>
@@ -76,11 +76,11 @@
                 android:id="@+id/itemCount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:textAlignment="center"
-                android:gravity = "center"
-                android:textSize = "26dp"
+                android:textSize="20dp"
                 tools:text="0" />
 
 
