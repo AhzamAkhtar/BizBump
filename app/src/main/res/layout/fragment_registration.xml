@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dd"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/registrationHeader"
+        android:text="REGISTER"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize = "20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor = "@color/black"
+        />
+
+    <TextView
+        android:id="@+id/registerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:letterSpacing="0.05"
+        android:text="NAME"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationHeader" />
+
+    <EditText
+        android:id="@+id/name_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvregisterPhonenumber"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerName"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"
+        android:imeOptions="actionNext"
+        />
+
+    <TextView
+        android:id="@+id/tvErrorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Name"
+        app:layout_constraintTop_toBottomOf="@+id/name_EditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="1dp"
+        />
+
+    <TextView
+        android:id="@+id/tvregisterPhonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:letterSpacing="0.05"
+        android:text="PHONE NUMBER"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_EditText" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/phoneNumber_linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/dob"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvregisterPhonenumber">
+
+
+        <EditText
+            android:id="@+id/edphoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:inputType="phone"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:lines="1"
+            android:background="@drawable/rounded_edit_text"
+            android:imeOptions="actionNext"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/tvErrorPhoneumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginStart="16dp"
+        android:text="Enter Phone"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber_linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:letterSpacing="0.05"
+        android:text="DATE OF BIRTH"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber_linearLayout" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/gender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tvuserName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="0.2"
+
+            android:gravity="center_vertical"
+            android:textColor="@color/black">
+
+            <AutoCompleteTextView
+                android:id="@+id/selectDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="12"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:lines="1"
+                android:background="@drawable/rounded_edit_text"
+                android:textSize="12sp"
+                android:imeOptions="actionNext"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textView1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="0.333"
+            android:gravity="center_vertical"
+            android:textColor="@color/black">
+
+            <AutoCompleteTextView
+                android:id="@+id/selectMonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/rounded_edit_text"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:lines="1"
+                android:text="July"
+                android:imeOptions="actionNext"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textView11"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="0.333"
+            android:gravity="center"
+            android:textColor="@color/black">
+
+            <AutoCompleteTextView
+                android:id="@+id/selectYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edit_text"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:lines="1"
+                android:text="2000"
+                android:imeOptions="actionNext"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/tvErrorDOB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Date Of Birth"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="1dp"
+        android:layout_marginStart="16dp"
+        />
+
+
+    <TextView
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:letterSpacing="0.05"
+        android:text="GENDER"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/selectGender"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvCountryandCity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender"
+        app:boxStrokeColor="#1A73EB"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/actSelectGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/rounded_edit_text"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:inputType="none"
+            android:lines="1"
+            android:text="Male"
+            android:imeOptions="actionNext"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/tvErrorGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Gender"
+        app:layout_constraintTop_toBottomOf="@+id/selectGender"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="1dp"
+        android:layout_marginStart="16dp"
+        />
+
+
+    <TextView
+        android:id="@+id/tvCountryandCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:letterSpacing="0.05"
+        android:text="COUNTRY AND CITY"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectGender"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/lllinearLayoutSec"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountryandCity"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/selectCountry"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:textColor="@color/black">
+
+            <AutoCompleteTextView
+                android:id="@+id/selectCountryd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/rounded_edit_text"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:lines="1"
+                android:text="INDIA"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/selectCity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:textColor="@color/black">
+
+            <EditText
+                android:id="@+id/selectcityDropdown"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@drawable/rounded_edit_text"
+                android:textSize="12sp"
+                android:text="DELHI"
+                android:inputType="text"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:lines="1"
+                android:imeOptions="actionDone"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/tvErrorCountryCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Country/City"
+        app:layout_constraintTop_toBottomOf="@+id/lllinearLayoutSec"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="1dp"
+        android:layout_marginStart="16dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_stylenew"
+        android:foregroundTint="@color/black"
+        android:letterSpacing="0.09"
+        android:padding="10dp"
+        android:shadowColor="@color/black"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Already have an account - Login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        android:layout_marginBottom="18dp"
+        android:textColor = "@color/red"/>
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBarconfig"-->
+<!--        style="?android:attr/progressBarStyle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:layout_weight="1"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/registerButton"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/registerButton"-->
+<!--        android:indeterminate="true"-->
+<!--        android:indeterminateTintMode="src_atop"-->
+<!--        android:indeterminateTint="#0066FF"/>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

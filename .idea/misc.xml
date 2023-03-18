@@ -7,6 +7,7 @@
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.198" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/button_background.xml" value="0.2275" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/button_style.xml" value="0.198" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/button_stylenew.xml" value="0.204" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/buying_screen.xml" value="0.1955" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/cards_background.xml" value="0.193" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/electrician_background.xml" value="0.193" />
@@ -19,15 +20,22 @@
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/home.xml" value="0.193" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/ic_launcher_background.xml" value="0.147" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/location.xml" value="0.147" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/login_design.xml" value="0.204" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/main_screen_background.xml" value="0.1935" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/person.xml" value="0.193" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/plumber_background.xml" value="0.193" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/plumber_foreground.xml" value="0.172" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/rounded_edit_text.xml" value="0.204" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/userimage.xml" value="0.1" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/vegetable_background.xml" value="0.172" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/drawable/vegetable_foreground.xml" value="0.193" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/activity_login2.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/activity_main.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/buying.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/dropdown_layout.xml" value="0.2076923076923077" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/fragment_login.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/fragment_registration.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/item_layout.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/ahzam/AndroidStudioProjects/Google_sol/app/src/main/res/layout/main_screen_activity.xml" value="0.1" />

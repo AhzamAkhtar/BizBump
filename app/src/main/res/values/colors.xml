@@ -11,5 +11,6 @@
     <color name="testing">#e9ecef</color>
     <color name="darkBlue">#14213d</color>
     <color name="skyBlue">#48cae4</color>
+    <color name="red">#e63946</color>
 
 </resources>
