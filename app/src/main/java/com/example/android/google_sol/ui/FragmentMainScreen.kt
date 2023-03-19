@@ -1,9 +1,11 @@
 package com.example.android.google_sol.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Point
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
@@ -16,26 +18,32 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.android.volley.*
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.android.google_sol.R
 import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.example.android.google_sol.util.BuyingDTO
 import com.example.android.google_sol.util.SellerDto
 import com.example.android.google_sol.util.SellerViewModal
+import com.example.android.google_sol.util.recyclerDto
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.FirebaseFirestore
+import org.json.JSONArray
+import org.json.JSONException
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -89,6 +97,8 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         setUpMap()
 
     }
+
+
 
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(

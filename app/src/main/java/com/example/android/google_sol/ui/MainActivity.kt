@@ -15,12 +15,13 @@ class MainActivity : AppCompatActivity() {
     companion object{
         const val MAIN_SCREEN = 1
         const val BUYING_SCREEN = 2
+        const val DIRECTION_SCREEN = 3
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel.setScreenState(MAIN_SCREEN)
+        viewModel.setScreenState(DIRECTION_SCREEN)
         setupObserver()
 
     }
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 BUYING_SCREEN -> {
                     buyingScreen()
+                }
+                DIRECTION_SCREEN -> {
+                    getRouteScreen()
                 }
             }
         }
@@ -66,4 +70,11 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainUserProfile,FragmentMainScreen()).commit()
     }
+
+    private fun getRouteScreen(){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainUserProfile , FragmentGetDirection()).commit()
+    }
+
 }
