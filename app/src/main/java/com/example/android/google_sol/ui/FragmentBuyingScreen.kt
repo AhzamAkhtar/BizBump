@@ -22,7 +22,8 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
     private val db = FirebaseFirestore.getInstance()
     private val mainData = ArrayList<recyclerDto>()
     private val itemAdapter by lazy { RecyclerViewAdapter(mainData, this ) }
-    var finalPrice:Int = 0
+    private var finalPrice:Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,21 +34,21 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getData()
-        binding.recyclerViewItem.layoutManager = LinearLayoutManager(
-            requireActivity(), RecyclerView.VERTICAL, false
-        )
-        binding.recyclerViewItem.adapter = itemAdapter
-
         binding.btnProceed.setOnClickListener{
             viewModel.setPriceForCheckout(
                 PriceDTO(
                     finalPrice.toString()
                 )
             )
-
+            viewModel.setScreenState(MainActivity.CHECKOUT_SCREEN)
         }
-        viewModel.setScreenState(MainActivity.CHECKOUT_SCREEN)
+
+        getData()
+        binding.recyclerViewItem.layoutManager = LinearLayoutManager(
+            requireActivity(), RecyclerView.VERTICAL, false
+        )
+        binding.recyclerViewItem.adapter = itemAdapter
+
     }
 
     private fun getData() {
@@ -113,8 +114,6 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
         binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
     }
-
-
 
 
 }

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel.setScreenState(DIRECTION_SCREEN)
+        viewModel.setScreenState(MAIN_SCREEN)
         setupObserver()
 
     }
