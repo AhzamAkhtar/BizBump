@@ -29,6 +29,7 @@ import com.example.android.google_sol.R
 import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.example.android.google_sol.util.BuyingDTO
 import com.example.android.google_sol.util.CheckoutDTO.AddressDTO
+import com.example.android.google_sol.util.CheckoutDTO.SellerInfoDTO
 import com.example.android.google_sol.util.SellerDto
 import com.example.android.google_sol.util.SellerViewModal
 import com.example.android.google_sol.util.recyclerDto
@@ -248,6 +249,8 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         }
     }
 
+
+
     private fun addDataToBottomSheet() {
         googleMap.setOnMarkerClickListener { marker ->
             val address = getSellerAddress(
@@ -268,10 +271,16 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
                         val open  = document.getString("open")
                         val phoneNumber = document.get("phoneNumber")
 
+
                         if (Name != null) {
                             //binding.progressBar.visibility = View.VISIBLE
                             showBottomSheet(Name, Type.toString(), address, UserImage.toString(),open.toString(),phoneNumber.toString())
-
+                            viewModel.setSellerDataForCheckout(
+                                SellerInfoDTO(
+                                    Name,
+                                    phoneNumber.toString()
+                                )
+                            )
                             //binding.progressBar.visibility = View.GONE
                         }
                     }

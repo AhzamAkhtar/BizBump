@@ -48,11 +48,11 @@ class SellerViewModal  : ViewModel(){
         _priceForCheckout.value = data
     }
 
-    private val _sellerNameForCheckout = MutableLiveData<SellerInfoDTO>()
-    val sellerNameForCheckout : MutableLiveData<SellerInfoDTO>
-        get() = _sellerNameForCheckout
+    private val _sellerDataForCheckout = MutableLiveData<SellerInfoDTO>()
+    val sellerDataForCheckout : MutableLiveData<SellerInfoDTO>
+        get() = _sellerDataForCheckout
 
-    fun setSellerNameForCheckout(data : SellerInfoDTO){
-        _sellerNameForCheckout.value = data
+    fun setSellerDataForCheckout(data : SellerInfoDTO){
+        _sellerDataForCheckout.value = data
     }
 }

@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.android.google_sol.databinding.FragmentCheckoutBinding
+import com.example.android.google_sol.util.CheckoutDTO.AddressDTO
 import com.example.android.google_sol.util.CheckoutDTO.PriceDTO
+import com.example.android.google_sol.util.CheckoutDTO.SellerInfoDTO
 import com.example.android.google_sol.util.SellerViewModal
 
 class FragmentCheckoutScreen : Fragment() {
@@ -31,6 +33,17 @@ class FragmentCheckoutScreen : Fragment() {
         viewModel.priceForCheckout.observe(requireActivity()){
             val modal = it as PriceDTO
             binding.tvPrice.text = modal.Price
+        }
+
+        viewModel.addressForCheckout.observe(requireActivity()){
+            val modal = it as AddressDTO
+            binding.tvAddress.text = modal.Address
+        }
+
+        viewModel.sellerDataForCheckout.observe(requireActivity()){
+            val modal = it as SellerInfoDTO
+            binding.tvSellerName.text = modal.Name
+            binding.tvSellerPhoneNumber.text = modal.PhoneNumber
         }
     }
 }

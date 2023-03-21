@@ -252,7 +252,7 @@
         android:letterSpacing="0.09"
         android:padding="10dp"
         android:shadowColor="@color/black"
-        android:text="Confirm Booking"
+        android:text="Confirm Order"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold"
