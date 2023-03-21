@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.google_sol.databinding.BuyingBinding
 import com.example.android.google_sol.util.*
+import com.example.android.google_sol.util.CheckoutDTO.PriceDTO
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FragmentBuyingScreen : Fragment(), ItemClickListener {
@@ -37,6 +38,16 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
             requireActivity(), RecyclerView.VERTICAL, false
         )
         binding.recyclerViewItem.adapter = itemAdapter
+
+        binding.btnProceed.setOnClickListener{
+            viewModel.setPriceForCheckout(
+                PriceDTO(
+                    finalPrice.toString()
+                )
+            )
+
+        }
+        viewModel.setScreenState(MainActivity.CHECKOUT_SCREEN)
     }
 
     private fun getData() {
@@ -102,6 +113,8 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
         binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
     }
+
+
 
 
 }

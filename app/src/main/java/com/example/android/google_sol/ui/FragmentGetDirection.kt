@@ -2,13 +2,16 @@ package com.example.android.google_sol.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Point
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -65,18 +68,20 @@ class FragmentGetDirection : Fragment() , OnMapReadyCallback, GoogleMap.OnMarker
         //googleMap.addMarker(MarkerOptions().position(location2).title("My Location2"))
 
         //googleMap.setOnMarkerClickListener(requireivity()::class.java)
-        setUpMap()
+        //setUpMap()
+
+        direction()
 
     }
 
     fun direction(){
         val requestQueue : RequestQueue =  Volley.newRequestQueue(requireActivity())
-        val url : String = Uri.parse("https://maps.googleapis.com/maps/api/direction/json")
+        val url : String = Uri.parse("https://maps.googleapis.com/maps/api/directions/json")
             .buildUpon()
             .appendQueryParameter("destination","-6.9218571 , 107.6048254")
             .appendQueryParameter("origin","-6.9249233 , 107.6345122")
             .appendQueryParameter("mode","driving")
-            .appendQueryParameter("key","")
+            .appendQueryParameter("key","AIzaSyDJkiVRpSOUcwh7QmAOeP_LxR_SgUmFAA8")
             .toString()
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -124,15 +129,22 @@ class FragmentGetDirection : Fragment() , OnMapReadyCallback, GoogleMap.OnMarker
                             .include(LatLng(-6.9218571 , 107.6048254))
                             .include(LatLng(-6.9249233 , 107.6345122)).build()
 
-                        //val point : Point = Point()
-                        //googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds))
+                        val point : Point = Point()
+                        //getWindowManager().getDefaultDisplay().getSize(point)
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(
+                            bounds,
+                            point.x,
+                            150,
+                            30
+                        ))
                     }
                 } catch (e: JSONException){
                     e.printStackTrace()
                 }
             },
             Response.ErrorListener { error ->
-                // Handle the error here
+                Toast.makeText(requireActivity(),error.toString(),Toast.LENGTH_LONG).show()
+                Log.d("error",error.toString())
             }
         )
 

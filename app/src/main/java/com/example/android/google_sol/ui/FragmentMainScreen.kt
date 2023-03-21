@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide
 import com.example.android.google_sol.R
 import com.example.android.google_sol.databinding.ActivityMainBinding
 import com.example.android.google_sol.util.BuyingDTO
+import com.example.android.google_sol.util.CheckoutDTO.AddressDTO
 import com.example.android.google_sol.util.SellerDto
 import com.example.android.google_sol.util.SellerViewModal
 import com.example.android.google_sol.util.recyclerDto
@@ -100,7 +101,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
 
 
 
-    private fun setUpMap() {
+      private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -122,6 +123,12 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
             if (location != null) {
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude, lastLocation.longitude)
+                val currentUserAddress = getSellerAddress(location.latitude.toString(),location.longitude.toString())
+                viewModel.setAddressForCheckout(
+                    AddressDTO(
+                        currentUserAddress
+                    )
+                )
                 placeMarkerOnMap(currentLatLong)
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 13f))
                 hashMap["userLat"] = currentLatLong.latitude.toString()

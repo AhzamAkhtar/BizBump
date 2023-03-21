@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         const val MAIN_SCREEN = 1
         const val BUYING_SCREEN = 2
         const val DIRECTION_SCREEN = 3
+        const val CHECKOUT_SCREEN = 4
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +39,14 @@ class MainActivity : AppCompatActivity() {
                 DIRECTION_SCREEN -> {
                     getRouteScreen()
                 }
+                CHECKOUT_SCREEN -> {
+                    getCheckoutScreen()
+                }
             }
         }
     }
+
+
 
     override fun onBackPressed() {
         if(handledBackPressed())
@@ -69,6 +75,12 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainUserProfile,FragmentMainScreen()).commit()
+    }
+
+    private fun getCheckoutScreen() {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainUserProfile,FragmentCheckoutScreen()).commit()
     }
 
     private fun getRouteScreen(){

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Checkout Page"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textSize = "18dp"
+        />
+    
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "₹88"
+        app:layout_constraintTop_toBottomOf="@+id/tvCheckout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        android:textSize = "70dp"
+        android:textColor = "@color/skyBlue"/>
+    
+    <TextView
+        android:id="@+id/tvPayableAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Payable Amount"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize = "18dp"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llFirstLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tvPayableAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"
+                android:layout_marginTop="10dp"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <TextView
+        android:id="@+id/tvBillingAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Billing Address"
+        app:layout_constraintTop_toBottomOf="@+id/llFirstLine"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize = "20dp"
+        android:textColor = "@color/black"/>
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley"
+        android:textColor = "@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/tvBillingAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize = "20dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/firstTwoline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"
+                android:layout_marginTop="10dp"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <TextView
+        android:id="@+id/tvSellerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Seller Info"
+        app:layout_constraintTop_toBottomOf="@+id/firstTwoline"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize = "18dp"
+        android:textColor = "@color/black"/>
+
+    <GridLayout
+        android:id="@+id/glSellerInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="2"
+        android:columnCount="2"
+        app:layout_constraintTop_toBottomOf="@+id/tvSellerInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Name"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/tvSellerName"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Raju"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Phone Number"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/tvSellerPhoneNumber"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="+91 7542415789"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+    </GridLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llSecondLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/glSellerInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"
+                android:layout_marginTop="10dp"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <TextView
+        android:id="@+id/tvPaymentInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "Payment Options"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llSecondLine"
+        android:textColor = "@color/black"
+        android:textSize = "18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+
+
+        <RadioButton
+            android:id="@+id/radioone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPaymentInfo"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize = "16sp"
+            android:text = "Cash On Delivery"/>
+
+    <RadioButton
+        android:id="@+id/radiotwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioone"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize = "16sp"
+        android:text = "Credit Card / Debit Card / NetBanking"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_style"
+        android:foregroundTint="@color/black"
+        android:letterSpacing="0.09"
+        android:padding="10dp"
+        android:shadowColor="@color/black"
+        android:text="Confirm Booking"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
