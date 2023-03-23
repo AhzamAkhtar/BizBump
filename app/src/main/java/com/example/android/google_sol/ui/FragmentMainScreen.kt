@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -84,6 +85,15 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         //binding.progressBar.visibility = View.GONE
 
         fetchDataFromFirebase()
+
+        binding.cards1.setOnClickListener{
+            setDataForVegetableOnly()
+        }
+
+        binding.cards2.setOnClickListener{
+            setDataForFruitsOnly()
+
+        }
     }
 
     override fun onMapReady(GoogleMap: GoogleMap) {
@@ -229,6 +239,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
                         )
                     )
                     setData()
+
                 }
             }
             .addOnFailureListener { exception ->
@@ -248,6 +259,83 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
 
         }
     }
+
+    private fun setDataForVegetableOnly(){
+        db.collection("vendors")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    viewModel.setSellerData(
+                        SellerDto(
+                            document.getString("Name").toString(),
+                            document.getString("Type").toString(),
+                            document.getString("Lat")!!.toString(),
+                            document.getString("Lng")!!.toString(),
+                            document.getString("open").toString()
+                        )
+                    )
+                    HelpergetOnlyVegtableSeller()
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Error", "Error getting Document", exception)
+            }
+    }
+
+    private fun setDataForFruitsOnly(){
+        db.collection("vendors")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    viewModel.setSellerData(
+                        SellerDto(
+                            document.getString("Name").toString(),
+                            document.getString("Type").toString(),
+                            document.getString("Lat")!!.toString(),
+                            document.getString("Lng")!!.toString(),
+                            document.getString("open").toString()
+                        )
+                    )
+                    HelpergetOnlyFruitSeller()
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Error", "Error getting Document", exception)
+            }
+    }
+
+    private fun HelpergetOnlyVegtableSeller(){
+       ///////
+        Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
+        viewModel.sellerData.observe(requireActivity()){
+            val modal = it as SellerDto
+            if(modal.Type=="Vegetable Seller"){
+                val latitude = modal.Lat.toDouble()
+                val longitude = modal.Lng.toDouble()
+                val directions = LatLng(latitude, longitude)
+                googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name + modal.Type))
+                addDataToBottomSheet()
+                Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun HelpergetOnlyFruitSeller(){
+        viewModel.sellerData.observe(requireActivity()){
+            val modal = it as SellerDto
+            if(modal.Type=="Fruits Seller"){
+                val latitude = modal.Lat.toDouble()
+                val longitude = modal.Lng.toDouble()
+                val directions = LatLng(latitude, longitude)
+                googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name + modal.Type))
+                addDataToBottomSheet()
+                Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
 
 
 
