@@ -27,6 +27,10 @@ class FragmentCheckoutScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getData()
+
+        binding.btnConfirmOrder.setOnClickListener{
+            viewModel.setScreenState(MainActivity.ORDER_PLACED)
+        }
     }
 
     private fun getData(){

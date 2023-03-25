@@ -21,6 +21,7 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
     private val viewModel: SellerViewModal by activityViewModels()
     private val db = FirebaseFirestore.getInstance()
     private val mainData = ArrayList<recyclerDto>()
+    private val realData = ArrayList<recyclerDto>()
     private val itemAdapter by lazy { RecyclerViewAdapter(mainData, this ) }
     private var finalPrice:Int = 0
 
@@ -82,7 +83,7 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
                         result.forEach {
                             val result1: List<String> = rr.split("=")
                             //Toast.makeText(requireActivity(),result1[1],Toast.LENGTH_SHORT).show()
-                            Log.d("FINAL", it)
+                             Log.d("FINAL", it)
                             mainData.add(
                                 recyclerDto(
                                     it.split("=")[0],
@@ -105,6 +106,7 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
         finalPrice -= (1) * price.toInt()
         binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
+
     }
 
     override fun add(textData: recyclerDto, position: Int) {
@@ -113,7 +115,14 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
         finalPrice += (1) * price.toInt()
         binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
+
     }
 
+    private fun addTestingData(){
+        for(item in mainData){
+            realData.add(item)
+        }
+        Log.d("realData",realData.toString())
+    }
 
 }

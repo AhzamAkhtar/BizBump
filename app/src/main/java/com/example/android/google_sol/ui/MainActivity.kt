@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         const val BUYING_SCREEN = 2
         const val DIRECTION_SCREEN = 3
         const val CHECKOUT_SCREEN = 4
+        const val ORDER_PLACED = 5
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +43,13 @@ class MainActivity : AppCompatActivity() {
                 CHECKOUT_SCREEN -> {
                     getCheckoutScreen()
                 }
+                ORDER_PLACED -> {
+                    oderPlacedScreen()
+                }
             }
         }
     }
+
 
 
 
@@ -87,6 +92,12 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainUserProfile , FragmentGetDirection()).commit()
+    }
+
+    private fun oderPlacedScreen() {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainUserProfile , FragmentOrderPlaced()).commit()
     }
 
 }

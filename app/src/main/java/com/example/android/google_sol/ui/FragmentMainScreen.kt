@@ -261,6 +261,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
     }
 
     private fun setDataForVegetableOnly(){
+        googleMap.clear()
         db.collection("vendors")
             .get()
             .addOnSuccessListener { result ->
@@ -284,6 +285,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
     }
 
     private fun setDataForFruitsOnly(){
+        googleMap.clear()
         db.collection("vendors")
             .get()
             .addOnSuccessListener { result ->
