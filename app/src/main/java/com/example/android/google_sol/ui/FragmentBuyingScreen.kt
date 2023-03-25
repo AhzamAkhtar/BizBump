@@ -126,7 +126,7 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
             "Product Name" to textData.title,
             "Quantity" to textData.itemCount,
             "SellerName" to hashMap["sellerName"],
-            "Status" to false
+            "PaymentMethod" to "CashOnDelivery"
         )
         docRef.set(newData)
     }
