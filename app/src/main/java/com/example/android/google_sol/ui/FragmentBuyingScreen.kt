@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,13 +14,14 @@ import com.example.android.google_sol.databinding.BuyingBinding
 import com.example.android.google_sol.util.*
 import com.example.android.google_sol.util.CheckoutDTO.PriceDTO
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.HashMap
 
 class FragmentBuyingScreen : Fragment(), ItemClickListener {
     private val binding by lazy { BuyingBinding.inflate(layoutInflater) }
     private val viewModel: SellerViewModal by activityViewModels()
     private val db = FirebaseFirestore.getInstance()
     private val mainData = ArrayList<recyclerDto>()
-    private val realData = ArrayList<recyclerDto>()
+    private var hashMap: HashMap<String, String> = HashMap()
     private val itemAdapter by lazy { RecyclerViewAdapter(mainData, this ) }
     private var finalPrice:Int = 0
 
@@ -116,13 +116,22 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
         binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
 
+        viewModel.dataForBuying.observe(requireActivity()){
+            val modal = it as BuyingDTO
+            hashMap.put("sellerName",modal.Name)
+        }
+
+        val docRef = db.collection("orders").document()
+        val newData = hashMapOf(
+            "Product Name" to textData.title,
+            "Quantity" to textData.itemCount,
+            "SellerName" to hashMap["sellerName"],
+            "Status" to false
+        )
+        docRef.set(newData)
     }
 
-    private fun addTestingData(){
-        for(item in mainData){
-            realData.add(item)
-        }
-        Log.d("realData",realData.toString())
-    }
+
+
 
 }
