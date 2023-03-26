@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -121,17 +122,26 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
             hashMap.put("sellerName",modal.Name)
         }
 
+        viewModel.userDetails.observe(requireActivity()){
+            val modal = it as UserDetailsDto
+            val name = modal.userName
+            val email = modal.userEmail
+            hashMap["userName"] = name
+            hashMap["userEmail"] = email
+        }
+
+
         val docRef = db.collection("orders").document()
         val newData = hashMapOf(
             "Product Name" to textData.title,
             "Quantity" to textData.itemCount,
             "SellerName" to hashMap["sellerName"],
-            "PaymentMethod" to "CashOnDelivery"
+            "PaymentMethod" to "CashOnDelivery",
+            "BuyerName" to hashMap["userName"],
+            "BuyerEmail" to hashMap["userEmail"]
         )
         docRef.set(newData)
     }
-
-
 
 
 }

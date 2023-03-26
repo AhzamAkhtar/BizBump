@@ -82,7 +82,6 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         //binding.progressBar.visibility = View.GONE
 
         fetchDataFromFirebase()
-        getUserData()
         binding.cards1.setOnClickListener{
             setDataForVegetableOnly()
         }
@@ -399,14 +398,6 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         endLocation.longitude = sellerLng.toDouble()
 
         return startLocation.distanceTo(endLocation).toDouble()
-    }
-
-    private fun getUserData(){
-        viewModel.userDetails.observe(requireActivity()){
-            val modal = it as UserDetailsDto
-            val name = modal.userName
-            Toast.makeText(requireActivity(),name,Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
