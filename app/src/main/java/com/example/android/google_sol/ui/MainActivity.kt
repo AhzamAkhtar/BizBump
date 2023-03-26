@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel : SellerViewModal by viewModels()
 
     companion object{
+        const val LOGIN_SCREEN = 6
         const val MAIN_SCREEN = 1
         const val BUYING_SCREEN = 2
         const val DIRECTION_SCREEN = 3
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel.setScreenState(MAIN_SCREEN)
+        viewModel.setScreenState(LOGIN_SCREEN)
         setupObserver()
 
     }
@@ -45,6 +46,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 ORDER_PLACED -> {
                     oderPlacedScreen()
+                }
+                LOGIN_SCREEN -> {
+                    userLoginScreen()
                 }
             }
         }
@@ -99,5 +103,12 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainUserProfile , FragmentOrderPlaced()).commit()
     }
+
+    private fun userLoginScreen() {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainUserProfile , FragmentUserLogin()).commit()
+    }
+
 
 }

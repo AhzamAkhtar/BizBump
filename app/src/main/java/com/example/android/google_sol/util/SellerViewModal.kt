@@ -64,5 +64,13 @@ class SellerViewModal  : ViewModel(){
         _sellerDataForCheckout.value = data
     }
 
+    private val _userDetails = MutableLiveData<UserDetailsDto>()
+    val userDetails : MutableLiveData<UserDetailsDto>
+    get() = _userDetails
+
+    fun setUserDetails(data : UserDetailsDto){
+        _userDetails.value = data
+    }
+
 
 }

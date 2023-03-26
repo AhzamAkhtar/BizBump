@@ -28,12 +28,9 @@ import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.android.google_sol.R
 import com.example.android.google_sol.databinding.ActivityMainBinding
-import com.example.android.google_sol.util.BuyingDTO
+import com.example.android.google_sol.util.*
 import com.example.android.google_sol.util.CheckoutDTO.AddressDTO
 import com.example.android.google_sol.util.CheckoutDTO.SellerInfoDTO
-import com.example.android.google_sol.util.SellerDto
-import com.example.android.google_sol.util.SellerViewModal
-import com.example.android.google_sol.util.recyclerDto
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -85,7 +82,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         //binding.progressBar.visibility = View.GONE
 
         fetchDataFromFirebase()
-
+        getUserData()
         binding.cards1.setOnClickListener{
             setDataForVegetableOnly()
         }
@@ -402,6 +399,14 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
         endLocation.longitude = sellerLng.toDouble()
 
         return startLocation.distanceTo(endLocation).toDouble()
+    }
+
+    private fun getUserData(){
+        viewModel.userDetails.observe(requireActivity()){
+            val modal = it as UserDetailsDto
+            val name = modal.userName
+            Toast.makeText(requireActivity(),name,Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
