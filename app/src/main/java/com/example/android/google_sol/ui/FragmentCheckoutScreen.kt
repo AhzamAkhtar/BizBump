@@ -59,7 +59,7 @@ class FragmentCheckoutScreen : Fragment() {
     private fun getData(){
         viewModel.priceForCheckout.observe(requireActivity()){
             val modal = it as PriceDTO
-            binding.tvPrice.text = modal.Price
+            binding.tvPrice.text = "₹"+modal.Price
         }
 
         viewModel.addressForCheckout.observe(requireActivity()){
