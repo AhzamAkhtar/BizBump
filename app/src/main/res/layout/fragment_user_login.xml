@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_three"/>
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/bt_sign_in"
+        android:id="@+id/btnGoogleSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

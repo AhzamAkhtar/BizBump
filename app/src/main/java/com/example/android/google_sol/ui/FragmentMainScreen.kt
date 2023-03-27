@@ -90,6 +90,22 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
             setDataForFruitsOnly()
 
         }
+
+        viewModel.userDetails.observe(requireActivity()){
+            val modal = it as UserDetailsDto
+            val name = modal.userName
+            val profileUrl = modal.photoUrl
+            val email = modal.userEmail
+            hashMap["userName"] = name
+            hashMap["userEmail"] = email
+            binding.headingCard.text = name
+            Glide.with(requireActivity())
+                .load(profileUrl)
+                .placeholder(R.drawable.arrow)
+                .into(binding.ivUserProfile)
+        }
+
+
     }
 
     override fun onMapReady(GoogleMap: GoogleMap) {

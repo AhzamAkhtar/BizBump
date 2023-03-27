@@ -103,7 +103,8 @@ class FragmentUserLogin : Fragment() {
                 viewModel.setUserDetails(
                     UserDetailsDto(
                         account.displayName.toString(),
-                        account.email.toString()
+                        account.email.toString(),
+                        account.photoUrl.toString()
                     )
                 )
                 viewModel.setScreenState(MainActivity.MAIN_SCREEN)
