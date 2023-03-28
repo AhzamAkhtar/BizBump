@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
     private fun userLoginScreen() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainUserProfile , FragmentSellerScreen()).commit()
+        fragmentTransaction.replace(R.id.mainUserProfile , FragmentUserLogin()).commit()
     }
 
 
