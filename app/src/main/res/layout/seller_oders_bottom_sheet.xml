@@ -17,6 +17,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <TextView
+        android:id="@+id/buyerHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="30dp"
+        android:text="Buyer Details"
+        android:textColor="@color/red"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/buyerName"
@@ -27,9 +40,9 @@
         android:layout_marginEnd="30dp"
         android:text="Buyer Name"
         android:textColor="#000000"
-        android:textSize="22dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buyerHeading"
        />
 
 
@@ -48,6 +61,19 @@
 
         />
 
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Delivery Address"
+        android:textSize = "22dp"
+        android:textColor = "@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/buyerEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"
+        />
+
     <LinearLayout
         android:id="@+id/subLocation"
         android:layout_width="0dp"
@@ -59,9 +85,10 @@
         android:text="Fruits Seller"
         android:textColor="#000000"
         android:textSize="18dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buyerEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddress"
 
         >
 
@@ -87,52 +114,77 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
+    <TextView
+        android:id = "@+id/tvPaymentDetails"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="31dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text = "Payment Method"
+        android:textSize = "22dp"
+        android:textColor = "@color/red"
         app:layout_constraintTop_toBottomOf="@+id/subLocation"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnToOrderNow"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_style"
-            android:backgroundTint="#0066FF"
-            android:gravity="center"
-            android:letterSpacing="0.01"
-            android:text="Order Now"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id = "@+id/tvPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Cash On Delivery"
+        app:layout_constraintTop_toBottomOf="@+id/tvPaymentDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize = "18dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"
+        android:textColor = "@color/black"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnToRequest"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_style"
-            android:backgroundTint="#0066FF"
-            android:gravity="center"
-            android:letterSpacing="0.01"
-            android:text="Request Now"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-    </LinearLayout>
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout3"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="31dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="31dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/subLocation"-->
+<!--        >-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnToOrderNow"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/button_style"-->
+<!--            android:backgroundTint="#0066FF"-->
+<!--            android:gravity="center"-->
+<!--            android:letterSpacing="0.01"-->
+<!--            android:text="Order Now"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="15dp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnToRequest"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/button_style"-->
+<!--            android:backgroundTint="#0066FF"-->
+<!--            android:gravity="center"-->
+<!--            android:letterSpacing="0.01"-->
+<!--            android:text="Request Now"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="15dp"-->
+<!--            android:textStyle="bold" />-->
+<!--    </LinearLayout>-->
 
     <Button
         android:id="@+id/bottomDecor"
@@ -141,9 +193,12 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:visibility="invisible"
+        android:layout_marginBottom="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPayment" />
+
+
 
 
 

@@ -25,6 +25,7 @@ class FragmentSellerScreen : Fragment() , SellerOrderInterface  {
     private val db = FirebaseFirestore.getInstance()
     private val mainData = ArrayList<SellerOrdersDTO>()
     private val itemAdapter by lazy {SellerOrdersRecyclerView(mainData,this)}
+    private var counter = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,12 +52,14 @@ class FragmentSellerScreen : Fragment() , SellerOrderInterface  {
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
+                    counter += 1
                     val productName = document.getString("Product Name")
                     val productQuantity = document.getString("Quantity")
                     val price = document.getString("Price")
                     val address = document.getString("Address")
                     val buyerName = document.getString("BuyerName")
                     val buyeremail = document.getString("BuyerEmail")
+                    val paymentMethod = document.getString("PaymentMethod")
                     mainData.add(
                         SellerOrdersDTO(
                             productName.toString(),
@@ -64,24 +67,22 @@ class FragmentSellerScreen : Fragment() , SellerOrderInterface  {
                             price.toString(),
                             buyerName.toString(),
                             buyeremail.toString(),
-                            address.toString()
+                            address.toString(),
+                            paymentMethod.toString()
                         )
                     )
 
-//                    showBottomSheet(
-//                        buyerName.toString(),
-//                        buyeremail.toString(),
-//                        address.toString()
-//                    )
                     itemAdapter.notifyDataSetChanged()
                 }
+                binding.tvTotalOrders.text = "Total Orders : "+counter.toString()
             }
     }
 
     private fun showBottomSheet(
         name : String,
         email : String,
-        address : String
+        address : String,
+        payment : String
     ){
         val dialog = BottomSheetDialog(requireActivity())
         val view = layoutInflater.inflate(R.layout.seller_oders_bottom_sheet,null)
@@ -90,10 +91,12 @@ class FragmentSellerScreen : Fragment() , SellerOrderInterface  {
         val buyerName = view.findViewById<TextView>(R.id.buyerName)
         val buyerEmail = view.findViewById<TextView>(R.id.buyerEmail)
         val buyerAddress = view.findViewById<TextView>(R.id.buyerAddress)
+        val paymentMethod = view.findViewById<TextView>(R.id.tvPayment)
 
         buyerName.text = name
         buyerEmail.text = email
         buyerAddress.text = address
+        paymentMethod.text = payment
 
         dialog.show()
     }
@@ -104,7 +107,8 @@ class FragmentSellerScreen : Fragment() , SellerOrderInterface  {
         showBottomSheet(
             textData.buyerName,
             textData.buyerEmail,
-            textData.buyerAddress
+            textData.buyerAddress,
+            textData.paymentMethod
         )
     }
 

@@ -6,5 +6,6 @@ data class SellerOrdersDTO(
     val Price : String,
     val buyerName : String,
     val buyerEmail : String,
-    val buyerAddress : String
+    val buyerAddress : String,
+    val paymentMethod : String
 )

@@ -30,7 +30,7 @@
                 android:layout_weight="1"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                tools:text="Sample Data" />
+                tools:text="Product Name : Sample Data"/>
 
             <TextView
                 android:id="@+id/order_quantity"
@@ -43,7 +43,7 @@
                 android:layout_weight="1"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                tools:text="12perKG" />
+                tools:text="Quantity : 1kg"  />
 
         </LinearLayout>
 
@@ -65,9 +65,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:textSize="20dp"
-                tools:text="+Rs200" />
+                tools:text="+₹200" />
 
 
         </LinearLayout>
