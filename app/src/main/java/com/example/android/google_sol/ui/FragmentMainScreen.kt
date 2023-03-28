@@ -101,7 +101,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
             binding.headingCard.text = name
             Glide.with(requireActivity())
                 .load(profileUrl)
-                .placeholder(R.drawable.arrow)
+                .placeholder(R.drawable.check)
                 .into(binding.ivUserProfile)
         }
 

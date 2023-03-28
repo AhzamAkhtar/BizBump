@@ -44,7 +44,7 @@ class FragmentCheckoutScreen : Fragment() {
         val notification = NotificationCompat.Builder(requireActivity() , CHANNEL_ID)
             .setContentTitle("Order Placed")
             .setContentText("Yooooo! Your Order Has Been Placed")
-            .setSmallIcon(R.drawable.arrow)
+            .setSmallIcon(R.drawable.check)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
 
