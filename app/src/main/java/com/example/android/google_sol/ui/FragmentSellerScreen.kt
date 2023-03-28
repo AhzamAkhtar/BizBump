@@ -4,24 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.google_sol.R
 import com.example.android.google_sol.databinding.FragmentSellerOrdersBinding
+import com.example.android.google_sol.util.*
 import com.example.android.google_sol.util.CheckoutDTO.PriceDTO
-import com.example.android.google_sol.util.ItemClickListener
-import com.example.android.google_sol.util.SellerOrdersDTO
-import com.example.android.google_sol.util.SellerOrdersRecyclerView
-import com.example.android.google_sol.util.SellerViewModal
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.FirebaseFirestore
+import org.w3c.dom.Text
+import kotlin.math.E
 
-class FragmentSellerScreen : Fragment()  {
+class FragmentSellerScreen : Fragment() , SellerOrderInterface  {
     private val binding by lazy { FragmentSellerOrdersBinding.inflate(layoutInflater) }
     private val viewModel : SellerViewModal by activityViewModels()
     private val db = FirebaseFirestore.getInstance()
     private val mainData = ArrayList<SellerOrdersDTO>()
-    private val itemAdapter by lazy {SellerOrdersRecyclerView(mainData)}
+    private val itemAdapter by lazy {SellerOrdersRecyclerView(mainData,this)}
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,15 +54,58 @@ class FragmentSellerScreen : Fragment()  {
                     val productName = document.getString("Product Name")
                     val productQuantity = document.getString("Quantity")
                     val price = document.getString("Price")
+                    val address = document.getString("Address")
+                    val buyerName = document.getString("BuyerName")
+                    val buyeremail = document.getString("BuyerEmail")
                     mainData.add(
                         SellerOrdersDTO(
                             productName.toString(),
                             productQuantity.toString(),
-                            price.toString()
+                            price.toString(),
+                            buyerName.toString(),
+                            buyeremail.toString(),
+                            address.toString()
                         )
                     )
+
+//                    showBottomSheet(
+//                        buyerName.toString(),
+//                        buyeremail.toString(),
+//                        address.toString()
+//                    )
                     itemAdapter.notifyDataSetChanged()
                 }
             }
     }
+
+    private fun showBottomSheet(
+        name : String,
+        email : String,
+        address : String
+    ){
+        val dialog = BottomSheetDialog(requireActivity())
+        val view = layoutInflater.inflate(R.layout.seller_oders_bottom_sheet,null)
+        dialog.setContentView(view)
+
+        val buyerName = view.findViewById<TextView>(R.id.buyerName)
+        val buyerEmail = view.findViewById<TextView>(R.id.buyerEmail)
+        val buyerAddress = view.findViewById<TextView>(R.id.buyerAddress)
+
+        buyerName.text = name
+        buyerEmail.text = email
+        buyerAddress.text = address
+
+        dialog.show()
+    }
+
+
+
+    override fun itemListner(textData: SellerOrdersDTO, position: Int) {
+        showBottomSheet(
+            textData.buyerName,
+            textData.buyerEmail,
+            textData.buyerAddress
+        )
+    }
+
 }

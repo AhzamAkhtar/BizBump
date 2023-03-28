@@ -10,7 +10,7 @@ import com.example.android.google_sol.R
 
 class SellerOrdersRecyclerView(
     private val itemList : ArrayList<SellerOrdersDTO>,
-    //private val itemClickListner : ItemClickListener
+    private val itemClickListner : SellerOrderInterface
 ) : RecyclerView.Adapter<SellerOrdersRecyclerView.viewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,6 +26,10 @@ class SellerOrdersRecyclerView(
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
        holder.bindData(itemList[position])
+
+        holder.title.setOnClickListener{
+            itemClickListner.itemListner(itemList[position],position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -39,7 +43,7 @@ class SellerOrdersRecyclerView(
         fun bindData(sellerOrdersDTO: SellerOrdersDTO){
             title.text = sellerOrdersDTO.ProductName
             quantity.text = sellerOrdersDTO.ProductQuantity
-            price.text = sellerOrdersDTO.Price
+            price.text = "₹"+sellerOrdersDTO.Price
         }
     }
 

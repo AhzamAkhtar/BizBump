@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.google_sol.databinding.BuyingBinding
 import com.example.android.google_sol.util.*
+import com.example.android.google_sol.util.CheckoutDTO.AddressDTO
 import com.example.android.google_sol.util.CheckoutDTO.PriceDTO
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.HashMap
@@ -127,6 +128,12 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
             hashMap.put("price", price.toString())
         }
 
+        viewModel.addressForCheckout.observe(requireActivity()){
+            val modal= it as AddressDTO
+            val address = modal.Address
+            hashMap["address"] = address
+        }
+
         viewModel.userDetails.observe(requireActivity()){
             val modal = it as UserDetailsDto
             val name = modal.userName
@@ -144,7 +151,8 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
             "PaymentMethod" to "CashOnDelivery",
             "BuyerName" to hashMap["userName"],
             "BuyerEmail" to hashMap["userEmail"],
-            "Price" to hashMap["price"]
+            "Price" to "33",
+            "Address" to hashMap["address"]
         )
         docRef.set(newData)
     }

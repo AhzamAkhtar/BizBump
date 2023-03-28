@@ -110,6 +110,6 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.mainUserProfile , FragmentSellerScreen()).commit()
     }
 
-    
+
 
 }
