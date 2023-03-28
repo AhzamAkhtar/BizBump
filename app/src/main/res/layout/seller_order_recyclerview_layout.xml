@@ -47,7 +47,30 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/controls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:weightSum="3">
 
+
+            <TextView
+                android:id="@+id/tvAmountRecieved"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                tools:text="+Rs200" />
+
+
+        </LinearLayout>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

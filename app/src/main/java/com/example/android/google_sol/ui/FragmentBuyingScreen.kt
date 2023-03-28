@@ -122,6 +122,11 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
             hashMap.put("sellerName",modal.Name)
         }
 
+        viewModel.priceForCheckout.observe(requireActivity()){
+            val price = it as PriceDTO
+            hashMap.put("price", price.toString())
+        }
+
         viewModel.userDetails.observe(requireActivity()){
             val modal = it as UserDetailsDto
             val name = modal.userName
@@ -134,11 +139,12 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
         val docRef = db.collection("orders").document()
         val newData = hashMapOf(
             "Product Name" to textData.title,
-            "Quantity" to textData.itemCount,
+            "Quantity" to textData.itemCount.toString(),
             "SellerName" to hashMap["sellerName"],
             "PaymentMethod" to "CashOnDelivery",
             "BuyerName" to hashMap["userName"],
-            "BuyerEmail" to hashMap["userEmail"]
+            "BuyerEmail" to hashMap["userEmail"],
+            "Price" to hashMap["price"]
         )
         docRef.set(newData)
     }

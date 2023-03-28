@@ -10,7 +10,7 @@ import com.example.android.google_sol.R
 
 class SellerOrdersRecyclerView(
     private val itemList : ArrayList<SellerOrdersDTO>,
-    private val itemClickListner : ItemClickListener
+    //private val itemClickListner : ItemClickListener
 ) : RecyclerView.Adapter<SellerOrdersRecyclerView.viewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,10 +35,11 @@ class SellerOrdersRecyclerView(
     class viewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val title : TextView = itemView.findViewById(R.id.oder_title)
         val quantity : TextView = itemView.findViewById(R.id.order_quantity)
-
+        val price : TextView = itemView.findViewById(R.id.tvAmountRecieved)
         fun bindData(sellerOrdersDTO: SellerOrdersDTO){
             title.text = sellerOrdersDTO.ProductName
             quantity.text = sellerOrdersDTO.ProductQuantity
+            price.text = sellerOrdersDTO.Price
         }
     }
 
