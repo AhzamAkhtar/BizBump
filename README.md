@@ -9,10 +9,10 @@ Despite the enormous population and demand, these small and local-business owner
 
 Youtube Demo - https://youtu.be/ay_AlBfSiOU
 
-# How to clone this on your machine
+# How to run this project on your local machine
 
 1- Fork this repository
 
-2- Clone your forked repo in your local machine
+2- Clone your forked repo on your local machine
 
 3 - Open the project in Android Studio and run the project
