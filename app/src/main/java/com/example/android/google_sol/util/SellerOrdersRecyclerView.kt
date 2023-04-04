@@ -42,8 +42,8 @@ class SellerOrdersRecyclerView(
         val price : TextView = itemView.findViewById(R.id.tvAmountRecieved)
         fun bindData(sellerOrdersDTO: SellerOrdersDTO){
             title.text = "Product Name : "+sellerOrdersDTO.ProductName
-            quantity.text = "Total Orders : "+sellerOrdersDTO.ProductQuantity
-            price.text = "+₹"+sellerOrdersDTO.Price
+            quantity.text = "Total Orders : "+sellerOrdersDTO.ProductQuantity + "Kg"
+            price.text = ""
         }
     }
 
