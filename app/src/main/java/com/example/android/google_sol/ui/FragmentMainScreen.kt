@@ -325,7 +325,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
 
     private fun HelpergetOnlyVegtableSeller(){
        ///////
-        Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
+        //Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
         viewModel.sellerData.observe(requireActivity()){
             val modal = it as SellerDto
             if(modal.Type=="Vegetable Seller"){
@@ -334,7 +334,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
                 val directions = LatLng(latitude, longitude)
                 googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name + modal.Type))
                 addDataToBottomSheet()
-                Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
+                //Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -348,7 +348,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
                 val directions = LatLng(latitude, longitude)
                 googleMap.addMarker(MarkerOptions().position(directions).title(modal.Name + modal.Type))
                 addDataToBottomSheet()
-                Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
+                //Toast.makeText(requireActivity(),"ok",Toast.LENGTH_LONG).show()
             }
         }
     }
