@@ -278,6 +278,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
+                    if (document.getString("Type").toString() == "Vegetable Seller") {
                     viewModel.setSellerData(
                         SellerDto(
                             document.getString("Name").toString(),
@@ -291,6 +292,7 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
 
                 }
             }
+            }
             .addOnFailureListener { exception ->
                 Log.d("Error", "Error getting Document", exception)
             }
@@ -302,17 +304,18 @@ class FragmentMainScreen : Fragment() , OnMapReadyCallback, GoogleMap.OnMarkerCl
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    viewModel.setSellerData(
-                        SellerDto(
-                            document.getString("Name").toString(),
-                            document.getString("Type").toString(),
-                            document.getString("Lat")!!.toString(),
-                            document.getString("Lng")!!.toString(),
-                            document.getString("open").toString()
+                    if (document.getString("Type").toString() == "Fruits Seller") {
+                        viewModel.setSellerData(
+                            SellerDto(
+                                document.getString("Name").toString(),
+                                document.getString("Type").toString(),
+                                document.getString("Lat")!!.toString(),
+                                document.getString("Lng")!!.toString(),
+                                document.getString("open").toString()
+                            )
                         )
-                    )
-                    HelpergetOnlyFruitSeller()
-
+                        HelpergetOnlyFruitSeller()
+                    }
                 }
             }
             .addOnFailureListener { exception ->

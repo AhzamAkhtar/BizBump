@@ -26,6 +26,7 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
     private var hashMap: HashMap<String, String> = HashMap()
     private val itemAdapter by lazy { RecyclerViewAdapter(mainData, this ) }
     private var finalPrice:Int = 0
+    private var particularPrice:Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -114,6 +115,7 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
     override fun add(textData: recyclerDto, position: Int) {
         textData.itemCount +=1
         val price = textData.price.split("-")[0]
+        particularPrice = price.toInt()
         finalPrice += (1) * price.toInt()
         binding.tvTotalPrice.text = "Rs.$finalPrice"
         itemAdapter.notifyItemChanged(position)
@@ -146,12 +148,13 @@ class FragmentBuyingScreen : Fragment(), ItemClickListener {
         val docRef = db.collection("orders").document()
         val newData = hashMapOf(
             "Product Name" to textData.title,
+            "ProductName" to textData.title,
             "Quantity" to textData.itemCount.toString(),
             "SellerName" to hashMap["sellerName"],
             "PaymentMethod" to "CashOnDelivery",
             "BuyerName" to hashMap["userName"],
             "BuyerEmail" to hashMap["userEmail"],
-            "Price" to "33",
+            "Price" to particularPrice,
             "Address" to hashMap["address"]
         )
         docRef.set(newData)

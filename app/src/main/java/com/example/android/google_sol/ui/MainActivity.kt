@@ -109,7 +109,4 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainUserProfile , FragmentUserLogin()).commit()
     }
-
-
-
 }
